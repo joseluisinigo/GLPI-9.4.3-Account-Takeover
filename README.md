@@ -1,6 +1,13 @@
 # GLPI-9.4.3-Account-Takeover
 Discovery and original PoC made by Pablo Martinez just adjusted slightly for python3
 
+Básicamente cambia en glpi 9.4.3 donde tienes un usuario sin privilegios por uno con mas privilegios. Ya sea un usuario normal o administrador, si tienes el email, con esto puedes cambiar su clave.
+
+Únicamente hay que usar el reset.py rellenando con tus datos, pero también explica Pablo los pasos que ha hecho dentro del código reset.py
+
+# GLPI-9.4.3-Account-Takeover
+Discovery and original PoC made by Pablo Martinez just adjusted slightly for python3
+
 #### Example
 python3 reset.py --url http://localhost/ --user normal --password normal --email glpi_adm@test.com --newpass test
 
@@ -14,6 +21,8 @@ Description:
 We've found that it's possible to abuse autocompletion feature to retrieve sensitive data from any user, using an unprivileged account.
 Besides hashed session cookies or api keys in cleartext, a malicious user can retrieve the password_forget_token atributte which leads to account takeover when "Lost password" feature is enabled.
 The steps are the following:
+
+
     1. Choose a known email or get a list of them using autocompletion
         GET /glpi/ajax/autocompletion.php?itemtype=UserEmail&field=email&term=
      
